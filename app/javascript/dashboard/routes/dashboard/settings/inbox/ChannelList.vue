@@ -79,6 +79,24 @@ const channelList = computed(() => {
       description: t('INBOX_MGMT.ADD.AUTH.CHANNEL.VOICE.DESCRIPTION'),
       icon: 'i-ri-phone-fill',
     },
+    {
+      key: 'whatsapp_green_api',
+      title: 'WhatsApp (Green API)',
+      description: 'Connect WhatsApp via Green API',
+      icon: 'i-ri-whatsapp-fill',
+    },
+    {
+      key: 'vk',
+      title: 'VKontakte',
+      description: 'Connect VK Community',
+      icon: 'i-ri-vk-fill',
+    },
+    {
+      key: 'max',
+      title: 'MAX Messenger',
+      description: 'Connect MAX Messenger',
+      icon: 'i-ri-chat-1-fill',
+    },
   ];
 });
 

@@ -83,6 +83,9 @@ export default {
       healthData: null,
       isLoadingHealth: false,
       healthError: null,
+      aiAgentEnabled: false,
+      aiAgentModel: 'gemini-1.5-pro',
+      aiAgentPrompt: '',
     };
   },
   computed: {
@@ -157,7 +160,10 @@ export default {
         this.isAVoiceChannel ||
         (this.isAnEmailChannel && !this.inbox.provider) ||
         this.shouldShowWhatsAppConfiguration ||
-        this.isAWebWidgetInbox
+        this.isAWebWidgetInbox ||
+        this.isAVkChannel ||
+        this.isAWhatsAppGreenApiChannel ||
+        this.isAMaxChannel
       ) {
         visibleToAllChannelTabs = [
           ...visibleToAllChannelTabs,
@@ -413,6 +419,9 @@ export default {
           : '';
 
         // Set initial tab after inbox data is loaded
+        this.aiAgentEnabled = this.inbox.ai_agent_enabled || false;
+        this.aiAgentModel = this.inbox.ai_agent_model || 'gemini-1.5-pro';
+        this.aiAgentPrompt = this.inbox.ai_agent_prompt || '';
         this.setTabFromRouteParam();
       });
     },
@@ -421,6 +430,9 @@ export default {
         const payload = {
           id: this.currentInboxId,
           name: this.selectedInboxName?.trim(),
+          ai_agent_enabled: this.aiAgentEnabled,
+          ai_agent_model: this.aiAgentModel,
+          ai_agent_prompt: this.aiAgentPrompt,
           enable_email_collect: this.emailCollectEnabled,
           allow_messages_after_resolved: this.allowMessagesAfterResolved,
           greeting_enabled: this.greetingEnabled,
@@ -798,6 +810,41 @@ export default {
                   'INBOX_MGMT.SETTINGS_POPUP.LOCK_TO_SINGLE_CONVERSATION_SUB_TEXT'
                 )
               }}
+            </p>
+          </label>
+          <label class="pb-4">
+            Включить AI Агента (Gemini)
+            <select v-model="aiAgentEnabled">
+              <option :value="true">
+                Включено
+              </option>
+              <option :value="false">
+                Отключено
+              </option>
+            </select>
+            <p class="pb-1 text-sm not-italic text-n-slate-11">
+              Автоматические ответы AI для этого канала.
+            </p>
+          </label>
+
+          <woot-input
+            v-if="aiAgentEnabled"
+            v-model="aiAgentModel"
+            class="pb-4"
+            label="Модель AI (например, gemini-1.5-pro)"
+            placeholder="gemini-1.5-pro"
+          />
+
+          <label v-if="aiAgentEnabled" class="pb-4">
+            Системный Промпт (Инструкция)
+            <textarea
+              v-model="aiAgentPrompt"
+              class="w-full p-2 border rounded-md border-slate-200 dark:border-slate-700 bg-slate-25 dark:bg-slate-900 text-slate-900 dark:text-slate-100 focus:outline-none focus:border-woot-500 focus:ring-1 focus:ring-woot-500"
+              rows="5"
+              placeholder="Ты полезный агент поддержки..."
+            ></textarea>
+            <p class="pb-1 text-sm not-italic text-n-slate-11">
+              Инструкция для AI, как себя вести и отвечать.
             </p>
           </label>
 

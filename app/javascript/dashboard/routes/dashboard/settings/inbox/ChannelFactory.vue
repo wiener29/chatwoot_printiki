@@ -10,7 +10,11 @@ import Whatsapp from './channels/Whatsapp.vue';
 import Line from './channels/Line.vue';
 import Telegram from './channels/Telegram.vue';
 import Instagram from './channels/Instagram.vue';
+import Instagram from './channels/Instagram.vue';
 import Voice from './channels/Voice.vue';
+import WhatsappGreenApi from './channels/WhatsappGreenApi.vue';
+import Vk from './channels/Vk.vue';
+import Max from './channels/Max.vue';
 
 const channelViewList = {
   facebook: Facebook,
@@ -24,6 +28,9 @@ const channelViewList = {
   telegram: Telegram,
   instagram: Instagram,
   voice: Voice,
+  whatsapp_green_api: WhatsappGreenApi,
+  vk: Vk,
+  max: Max,
 };
 
 export default defineComponent({

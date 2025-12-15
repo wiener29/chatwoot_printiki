@@ -11,6 +11,9 @@ export const INBOX_TYPES = {
   SMS: 'Channel::Sms',
   INSTAGRAM: 'Channel::Instagram',
   VOICE: 'Channel::Voice',
+  WHATSAPP_GREEN_API: 'Channel::WhatsappGreenApi',
+  VK: 'Channel::Vk',
+  MAX: 'Channel::Max',
 };
 
 export const TWILIO_CHANNEL_MEDIUM = {
@@ -29,6 +32,9 @@ const INBOX_ICON_MAP_FILL = {
   [INBOX_TYPES.LINE]: 'i-ri-line-fill',
   [INBOX_TYPES.INSTAGRAM]: 'i-ri-instagram-fill',
   [INBOX_TYPES.VOICE]: 'i-ri-phone-fill',
+  [INBOX_TYPES.WHATSAPP_GREEN_API]: 'i-ri-whatsapp-fill',
+  [INBOX_TYPES.VK]: 'i-ri-vk-fill',
+  [INBOX_TYPES.MAX]: 'i-ri-chat-1-fill',
 };
 
 const DEFAULT_ICON_FILL = 'i-ri-chat-1-fill';
@@ -44,6 +50,9 @@ const INBOX_ICON_MAP_LINE = {
   [INBOX_TYPES.LINE]: 'i-ri-line-line',
   [INBOX_TYPES.INSTAGRAM]: 'i-ri-instagram-line',
   [INBOX_TYPES.VOICE]: 'i-ri-phone-line',
+  [INBOX_TYPES.WHATSAPP_GREEN_API]: 'i-ri-whatsapp-line',
+  [INBOX_TYPES.VK]: 'i-ri-vk-line',
+  [INBOX_TYPES.MAX]: 'i-ri-chat-1-line',
 };
 
 const DEFAULT_ICON_LINE = 'i-ri-chat-1-line';

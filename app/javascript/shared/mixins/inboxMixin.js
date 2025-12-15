@@ -121,11 +121,21 @@ export default {
     isAWhatsAppChannel() {
       return (
         this.channelType === INBOX_TYPES.WHATSAPP ||
-        this.isATwilioWhatsAppChannel
+        this.isATwilioWhatsAppChannel ||
+        this.isAWhatsAppGreenApiChannel
       );
     },
     isAnInstagramChannel() {
       return this.channelType === INBOX_TYPES.INSTAGRAM;
+    },
+    isAVkChannel() {
+      return this.channelType === INBOX_TYPES.VK;
+    },
+    isAWhatsAppGreenApiChannel() {
+      return this.channelType === INBOX_TYPES.WHATSAPP_GREEN_API;
+    },
+    isAMaxChannel() {
+      return this.channelType === INBOX_TYPES.MAX;
     },
   },
   methods: {

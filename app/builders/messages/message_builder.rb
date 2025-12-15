@@ -28,10 +28,17 @@ class Messages::MessageBuilder
     # The frontend is equipped to handle this case
     process_email_content
     @message.save!
+    trigger_ai_response if @message_type == 'incoming' && !@private
     @message
   end
 
   private
+
+  def trigger_ai_response
+    return unless @conversation.inbox.respond_to?(:ai_agent_enabled?) && @conversation.inbox.ai_agent_enabled?
+
+    AgentBots::AiResponseJob.perform_later(@conversation.id)
+  end
 
   # Extracts content attributes from the given params.
   # - Converts ActionController::Parameters to a regular hash if needed.

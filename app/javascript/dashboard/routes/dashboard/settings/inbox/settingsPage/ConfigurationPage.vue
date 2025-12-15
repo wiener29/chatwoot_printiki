@@ -299,6 +299,39 @@ export default {
       </div>
     </SettingsSection>
   </div>
+  <div v-else-if="isAWhatsAppGreenApiChannel" class="mx-8">
+    <SettingsSection
+      :title="'Green API Configuration'"
+      :sub-title="'Configure your Green API WhatsApp instance'"
+    >
+      <woot-code :script="inbox.callback_webhook_url" lang="html" />
+    </SettingsSection>
+  </div>
+  <div v-else-if="isAVkChannel" class="mx-8">
+    <SettingsSection
+      :title="'VK Configuration'"
+      :sub-title="'Configure your VK Community'"
+    >
+      <div class="flex flex-col gap-4">
+        <div>
+           <p class="text-sm">Webhook URL</p>
+           <woot-code :script="inbox.callback_webhook_url" lang="html" />
+        </div>
+        <div>
+           <p class="text-sm">Confirmation Token (Should match VK)</p>
+           <woot-code :script="inbox.confirmation_token || ''" />
+        </div>
+      </div>
+    </SettingsSection>
+  </div>
+  <div v-else-if="isAMaxChannel" class="mx-8">
+    <SettingsSection
+      :title="'MAX Messenger Configuration'"
+      :sub-title="'Configure your MAX Messenger'"
+    >
+      <woot-code :script="inbox.callback_webhook_url" lang="html" />
+    </SettingsSection>
+  </div>
   <div v-else-if="isAnEmailChannel">
     <div class="mx-8">
       <SettingsSection

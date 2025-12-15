@@ -201,6 +201,14 @@
   type: code
 # End of Captain Config
 
+# MARK: AI Agent Config
+- name: GEMINI_API_KEY
+  display_title: 'Gemini API Key'
+  description: 'The API key for Google Gemini AI service'
+  locked: false
+  type: secret
+# End of AI Agent Config
+
 # ------- Chatwoot Internal Config for Cloud ----#
 - name: CHATWOOT_INBOX_TOKEN
   value:

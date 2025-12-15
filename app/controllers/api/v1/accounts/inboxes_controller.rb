@@ -111,7 +111,7 @@ class Api::V1::Accounts::InboxesController < Api::V1::Accounts::BaseController
   end
 
   def allowed_channel_types
-    %w[web_widget api email line telegram whatsapp sms]
+    %w[web_widget api email line telegram whatsapp sms whatsapp_green_api vk max]
   end
 
   def update_inbox_working_hours
@@ -173,7 +173,7 @@ class Api::V1::Accounts::InboxesController < Api::V1::Accounts::BaseController
   def inbox_attributes
     [:name, :avatar, :greeting_enabled, :greeting_message, :enable_email_collect, :csat_survey_enabled,
      :enable_auto_assignment, :working_hours_enabled, :out_of_office_message, :timezone, :allow_messages_after_resolved,
-     :lock_to_single_conversation, :portal_id, :sender_name_type, :business_name,
+     :lock_to_single_conversation, :portal_id, :sender_name_type, :business_name, :ai_agent_enabled, :ai_agent_model, :ai_agent_prompt,
      { csat_config: [:display_type, :message, :button_text, :language,
                      { survey_rules: [:operator, { values: [] }],
                        template: [:name, :template_id, :created_at, :language] }] }]
@@ -193,7 +193,10 @@ class Api::V1::Accounts::InboxesController < Api::V1::Accounts::BaseController
       'line' => Channel::Line,
       'telegram' => Channel::Telegram,
       'whatsapp' => Channel::Whatsapp,
-      'sms' => Channel::Sms
+      'sms' => Channel::Sms,
+      'whatsapp_green_api' => Channel::WhatsappGreenApi,
+      'vk' => Channel::Vk,
+      'max' => Channel::Max
     }[permitted_params[:channel][:type]]
   end
 

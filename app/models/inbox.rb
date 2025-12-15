@@ -46,6 +46,8 @@ class Inbox < ApplicationRecord
   include AccountCacheRevalidator
   include InboxAgentAvailability
 
+  delegate :confirmation_token, to: :channel, allow_nil: true
+
   # Not allowing characters:
   validates :name, presence: true
   validates :account_id, presence: true
@@ -184,6 +186,12 @@ class Inbox < ApplicationRecord
       "#{ENV.fetch('FRONTEND_URL', nil)}/webhooks/line/#{channel.line_channel_id}"
     when 'Channel::Whatsapp'
       "#{ENV.fetch('FRONTEND_URL', nil)}/webhooks/whatsapp/#{channel.phone_number}"
+    when 'Channel::WhatsappGreenApi'
+      "#{ENV.fetch('FRONTEND_URL', nil)}/webhooks/whatsapp_green_api/#{channel.id_instance}"
+    when 'Channel::Vk'
+      "#{ENV.fetch('FRONTEND_URL', nil)}/webhooks/vk/#{channel.group_id}"
+    when 'Channel::Max'
+      "#{ENV.fetch('FRONTEND_URL', nil)}/webhooks/max/#{channel.instance_id}"
     end
   end
 
